@@ -16,7 +16,7 @@
   "browserSupport": "gcsv",
   "priority": 99,
   "inRepository": false,
-  "lastUpdated": "2019-01-16 15:51:06"
+  "lastUpdated": "2019-01-16 20:36:22"
 }
 
 const aliases = Object.entries({
@@ -68,7 +68,7 @@ const aliases = Object.entries({
     dictionaryTitle: 'publicationTitle',
 });
 function clean(txt) {
-    return txt.replace(/\r/g, '').replace(/\n/g, ' ').replace(/;/g, ',').replace(/"/, "'");
+    return txt.replace(/\r/g, '').replace(/\n/g, ' ').replace(/;/g, ',').replace(/"/g, "'");
 }
 const ignore = new Set(['attachment', 'note']);
 function detail(txt, prefix) {

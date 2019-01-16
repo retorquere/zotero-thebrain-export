@@ -50,7 +50,7 @@ const aliases = Object.entries({
 })
 
 function clean(txt) {
-  return txt.replace(/\r/g, '').replace(/\n/g, ' ').replace(/;/g, ',').replace(/"/, "'")
+  return txt.replace(/\r/g, '').replace(/\n/g, ' ').replace(/;/g, ',').replace(/"/g, "'")
 }
 
 const ignore = new Set(['attachment', 'note'])
