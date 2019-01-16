@@ -1,0 +1,21 @@
+{
+  "translatorID": "f045946a-4c6a-43ac-81b0-eaf52d892cbf",
+  "label": "The Brain",
+  "description": "exports references in a format that can be imported by The Brain",
+  "creator": "Emiliano Heyns",
+  "target": "txt",
+  "minVersion": "4.0.27",
+  "maxVersion": "",
+  "configOptions": {
+    "getCollections": true
+  },
+  "displayOptions": {
+    "exportNotes": true
+  },
+  "translatorType": 2,
+  "browserSupport": "gcsv",
+  "priority": 99,
+  "inRepository": false
+}
+
+

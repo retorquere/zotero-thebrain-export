@@ -1,0 +1,33 @@
+{
+  "name": "zotero-plugin",
+  "version": "0.0.69",
+  "description": "Zotero plugin builder",
+  "homepage": "https://github.com/retorquere/zotero-plugin/wiki",
+  "author": {
+    "name": "Emiliano Heyns",
+    "email": "Emiliano.Heyns@iris-advies.com"
+  },
+  "scripts": {
+    "test": "tslint -t stylish --project .",
+    "prestart": "npm test",
+    "start": "tsc && node build.js",
+    "zot": "npm start && cp 'The Brain.js' ~/.BBTZ5TEST/zotero/translators/"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "@types/node": "^10.12.18",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/retorquere/zotero-plugin.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/retorquere/zotero-plugin/issues"
+  }
+}

@@ -1,0 +1,5 @@
+*.d.ts
+*.txt
+node_modules
+*.xlsx
+*.xlsx#
