@@ -16,7 +16,7 @@
   "browserSupport": "gcsv",
   "priority": 99,
   "inRepository": false,
-  "lastUpdated": "2019-01-16 15:45:50"
+  "lastUpdated": "2019-01-16 15:51:06"
 }
 
 const aliases = Object.entries({
@@ -85,7 +85,6 @@ function doExport() {
     while (item = Zotero.nextItem()) {
         if (ignore.has(item.itemType))
             continue;
-        Zotero.debug('exporting: ' + JSON.stringify(item, null, 2));
         for (const [alias, field] of aliases) {
             if (item[alias]) {
                 item[field] = item[alias];
@@ -94,7 +93,6 @@ function doExport() {
         }
         const reference = [];
         const creators = (item.creators || []).map(creator => {
-            Zotero.debug('creator:' + JSON.stringify(creator));
             let name = '';
             if (creator.name)
                 name = creator.name;
@@ -124,13 +122,10 @@ function doExport() {
         Zotero.write(clean(title) + '\n');
         detail(item.url, '+');
         for (const att of (item.attachments || [])) {
-            const path = att.url || att.localPath || att.defaultPath;
-            Zotero.debug('att:' + JSON.stringify(att) + ' = ' + path);
-            detail(path, '+');
+            detail(att.url || att.localPath || att.defaultPath, '+');
         }
         detail(item.abstractNote, '-');
         for (const note of (item.notes || [])) {
-            Zotero.debug('note:' + JSON.stringify(note));
             detail(note.note, '-');
         }
         detail(year, '#');
@@ -139,7 +134,6 @@ function doExport() {
             detail(name, '#');
         }
         for (const tag of (item.tags || [])) {
-            Zotero.debug('tag:' + JSON.stringify(tag));
             detail(tag.tag, '#');
         }
         for (const line of (item.extra || '').split(/\r?\n/).map(l => l.trim())) {

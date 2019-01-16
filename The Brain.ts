@@ -69,8 +69,6 @@ function doExport() {
   while (item = Zotero.nextItem()) {
     if (ignore.has(item.itemType)) continue
 
-    Zotero.debug('exporting: ' + JSON.stringify(item, null, 2))
-
     for (const [alias, field] of aliases) {
       if (item[alias]) {
         item[field] = item[alias]
@@ -80,7 +78,6 @@ function doExport() {
 
     const reference = []
     const creators = (item.creators || []).map(creator => {
-      Zotero.debug('creator:' + JSON.stringify(creator))
       let name = ''
       if (creator.name) name = creator.name
       if (creator.lastName) name = creator.lastName
@@ -108,15 +105,11 @@ function doExport() {
 
     detail(item.url, '+')
     for (const att of (item.attachments || [])) {
-      const path = att.url || att.localPath || att.defaultPath
-      Zotero.debug('att:' + JSON.stringify(att) + ' = ' + path) // tslint:disable-line:prefer-template
-
-      detail(path, '+')
+      detail(att.url || att.localPath || att.defaultPath, '+')
     }
 
     detail(item.abstractNote, '-')
     for (const note of (item.notes || [])) {
-      Zotero.debug('note:' + JSON.stringify(note))
       detail(note.note, '-')
     }
 
@@ -128,7 +121,6 @@ function doExport() {
     }
 
     for (const tag of (item.tags || [])) {
-      Zotero.debug('tag:' + JSON.stringify(tag))
       detail(tag.tag, '#')
     }
 
