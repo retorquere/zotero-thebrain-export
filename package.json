@@ -11,7 +11,7 @@
     "test": "tslint -t stylish --project .",
     "prestart": "npm test",
     "start": "tsc --outDir docs && node build.js",
-    "zot": "npm start && cp 'The Brain.js' ~/.BBTZ5TEST/zotero/translators/"
+    "zot": "npm start && cp 'docs/The Brain.js' ~/.BBTZ5TEST/zotero/translators/"
   },
   "directories": {
     "test": "test"

@@ -61,7 +61,7 @@ function detail(txt, prefix) {
   if (prefix !== '+') txt = clean(txt)
   if (prefix) prefix += ' '
 
-  Zotero.write(`  ${prefix}${txt}\n`)
+  Zotero.write(`\t${prefix}${txt}\n`)
 }
 
 function doExport() {

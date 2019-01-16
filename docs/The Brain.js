@@ -16,7 +16,7 @@
   "browserSupport": "gcsv",
   "priority": 99,
   "inRepository": false,
-  "lastUpdated": "2019-01-16 20:36:22"
+  "lastUpdated": "2019-01-16 20:50:45"
 }
 
 const aliases = Object.entries({
@@ -78,7 +78,7 @@ function detail(txt, prefix) {
         txt = clean(txt);
     if (prefix)
         prefix += ' ';
-    Zotero.write(`  ${prefix}${txt}\n`);
+    Zotero.write(`\t${prefix}${txt}\n`);
 }
 function doExport() {
     let item;
