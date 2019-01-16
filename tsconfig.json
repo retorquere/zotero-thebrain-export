@@ -6,7 +6,7 @@
     "disableSizeLimit": true,
     "module": "commonjs",
     "noImplicitAny": false,
-    "removeComments": false,
+    "removeComments": true,
     "preserveConstEnums": false,
     "sourceMap": false,
     "downlevelIteration": true,

@@ -1,8 +1,21 @@
 const fs = require('fs')
 
-const header = require('./The Brain.json')
-header.lastUpdated = (new Date()).toISOString().replace('T', ' ').replace(/\..*/, '')
 
-const translator = fs.readFileSync('The Brain.js', 'utf-8')
+const translator = {
+  source: 'The Brain.ts',
+  target: 'The Brain.js',
+}
+translator.mtime = fs.statSync(translator.source).mtime
+translator.data = fs.readFileSync(translator.target, 'utf-8')
 
-fs.writeFileSync('The Brain.js', JSON.stringify(header, null, 2) + '\n\n' + translator)
+const header = {
+  path: 'The Brain.json',
+}
+header.mtime = fs.statSync(header.path).mtime
+if (header.mtime < translator.mtime) header.mtime = translator.mtime
+
+header.data = require(`./${header.path}`)
+header.data.lastUpdated = header.mtime.toISOString().replace('T', ' ').replace(/\..*/, '')
+header.data = JSON.stringify(header.data, null, 2)
+
+fs.writeFileSync(translator.target, header.data + '\n\n' + translator.data)
