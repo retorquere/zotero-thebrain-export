@@ -10,7 +10,7 @@
   "scripts": {
     "test": "tslint -t stylish --project .",
     "prestart": "npm test",
-    "start": "tsc && node build.js",
+    "start": "tsc --outDir docs && node build.js",
     "zot": "npm start && cp 'The Brain.js' ~/.BBTZ5TEST/zotero/translators/"
   },
   "directories": {

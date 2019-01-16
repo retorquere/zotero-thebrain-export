@@ -3,7 +3,7 @@ const fs = require('fs')
 
 const translator = {
   source: 'The Brain.ts',
-  target: 'The Brain.js',
+  target: 'docs/The Brain.js',
 }
 translator.mtime = fs.statSync(translator.source).mtime
 translator.data = fs.readFileSync(translator.target, 'utf-8')
