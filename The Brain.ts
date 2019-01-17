@@ -52,9 +52,21 @@ const aliases = Object.entries({
 function clean(txt) {
   return txt.replace(/\r/g, '').replace(/\n/g, ' ').replace(/;/g, ',').replace(/["“”]/g, "'")
 }
+
 function url(txt) {
   const arbitrary_tb_limit = 185
   const ellipses = ' ...'
+
+  if (txt[0] === '/' || txt.match(/^[a-z]:\\/i)) {
+    txt = txt.replace(/\\/g, '/')
+
+    // Windows drive letter must be prefixed with a slash
+    if (txt[0] !== '/') txt = `/${txt}`
+
+    // Escape required characters for path components
+    // See: https://tools.ietf.org/html/rfc3986#section-3.3
+    txt = encodeURI(`file://${txt}`).replace(/[?#]/g, encodeURIComponent)
+  }
 
   if (txt.length <= arbitrary_tb_limit) return txt
   return txt.substr(0, arbitrary_tb_limit - ellipses.length) + ellipses
