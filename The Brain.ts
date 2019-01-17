@@ -153,7 +153,7 @@ function doExport() {
 
     for (const line of (item.extra || '').split(/\r?\n/).map(l => l.trim())) {
       if (line.match(/^[0-9]{5}$/)) {
-        detail(`Citations: ${line.replace(/^0+/, '')}`, '')
+        detail(`Citations: ${line.replace(/^0+/, '') || 0}`, '')
       }
     }
 
