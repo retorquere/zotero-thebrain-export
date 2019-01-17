@@ -16,7 +16,7 @@
   "browserSupport": "gcsv",
   "priority": 99,
   "inRepository": false,
-  "lastUpdated": "2019-01-16 20:50:45"
+  "lastUpdated": "2019-01-17 07:31:13"
 }
 
 const aliases = Object.entries({
@@ -137,8 +137,8 @@ function doExport() {
             detail(tag.tag, '#');
         }
         for (const line of (item.extra || '').split(/\r?\n/).map(l => l.trim())) {
-            if (line.match(/^citations:\s*[0-9]+$/)) {
-                detail(line, '');
+            if (line.match(/^[0-9]{5}$/)) {
+                detail(`Citations: ${line.replace(/^0+/, '')}`, '');
             }
         }
         let itemType = item.itemType.charAt(0).toUpperCase() + item.itemType.slice(1);
