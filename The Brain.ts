@@ -52,13 +52,20 @@ const aliases = Object.entries({
 function clean(txt) {
   return txt.replace(/\r/g, '').replace(/\n/g, ' ').replace(/;/g, ',').replace(/["“”]/g, "'")
 }
+function url(txt) {
+  const arbitrary_tb_limit = 185
+  const ellipses = ' ...'
+
+  if (txt.length <= arbitrary_tb_limit) return txt
+  return txt.substr(0, arbitrary_tb_limit - ellipses.length) + ellipses
+}
 
 const ignore = new Set(['attachment', 'note'])
 
 function detail(txt, prefix) {
   if (!txt) return
 
-  if (prefix !== '+') txt = clean(txt)
+  txt = prefix === '+' ? url(txt) : clean(txt)
   if (prefix) prefix += ' '
 
   Zotero.write(`\t${prefix}${txt}\n`)
@@ -105,22 +112,23 @@ function doExport() {
 
     detail(item.url, '+')
     for (const att of (item.attachments || [])) {
-      detail(att.url || att.localPath || att.defaultPath, '+')
+      detail(att.localPath || att.defaultPath || att.url, '+')
     }
 
     detail(item.abstractNote, '-')
     for (const note of (item.notes || [])) {
-      detail(note.note, '-')
+      detail(note.note.replace(/<[^>]*>?/g, ''), '-')
     }
-
-    detail(year, '#')
-    detail(item.publicationTitle, '#')
 
     for (const name of creators) {
       detail(name, '#')
     }
 
+    detail(year, '#')
+    detail(item.publicationTitle, '#')
+
     for (const tag of (item.tags || [])) {
+      if (tag.type === 1) continue // automatic tag
       detail(tag.tag, '#')
     }
 
@@ -135,6 +143,8 @@ function doExport() {
     detail(itemType, '#')
 
     detail(item.uri.split('/').pop(), '')
+
+    Zotero.write('\n')
   }
 }
 

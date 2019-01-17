@@ -1,3 +1,4 @@
+*.sqlite
 build
 *.txt
 node_modules
