@@ -132,15 +132,15 @@ function doExport() {
       detail(tag.tag, '#')
     }
 
+    let itemType = item.itemType.charAt(0).toUpperCase() + item.itemType.slice(1)
+    itemType = itemType.replace(/([A-Z]+)/g, ' $1').trim()
+    detail(itemType, '#')
+
     for (const line of (item.extra || '').split(/\r?\n/).map(l => l.trim())) {
       if (line.match(/^[0-9]{5}$/)) {
         detail(`Citations: ${line.replace(/^0+/, '')}`, '')
       }
     }
-
-    let itemType = item.itemType.charAt(0).toUpperCase() + item.itemType.slice(1)
-    itemType = itemType.replace(/([A-Z]+)/g, ' $1').trim()
-    detail(itemType, '#')
 
     detail(item.uri.split('/').pop(), '')
 
