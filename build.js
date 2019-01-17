@@ -1,5 +1,6 @@
 const fs = require('fs')
 const tsconfig = require('./tsconfig.json')
+const pkg = require('./package.json')
 
 const translator = {
   source: 'The Brain.ts',
@@ -18,4 +19,6 @@ header.data = require(`./${header.path}`)
 header.data.lastUpdated = header.mtime.toISOString().replace('T', ' ').replace(/\..*/, '')
 header.data = JSON.stringify(header.data, null, 2)
 
-fs.writeFileSync(translator.target, header.data + '\n\n' + translator.data)
+version = `// version: ${pkg.version}`
+
+fs.writeFileSync(translator.target, [header.data, version, translator.data].join('\n\n'))
