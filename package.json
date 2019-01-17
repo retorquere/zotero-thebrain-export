@@ -12,7 +12,7 @@
     "start": "tsc && node build.js",
     "zot": "npm start && cp 'build/The Brain.js' ~/.BBTZ5TEST/zotero/translators/",
     "postversion": "git push --tags && npm start && npm run make-release",
-    "make-release": "github-release upload --owner retorquere --repo $npm_package_name --tag \"v$npm_package_version\" --name \"v$npm_package_version\" --body \"$npm_package_description $npm_package_version. Rename 'The.Brain.js' to 'The Brain.js', drop it into the Zotero translators directory, and restart Zotero.\" \"build/The Brain.js\""
+    "make-release": "github-release upload --owner retorquere --repo $npm_package_name --tag \"v$npm_package_version\" --name \"v$npm_package_version\" --body \"$npm_package_description. Rename 'The.Brain.js' to 'The Brain.js', drop it into the Zotero translators directory, and restart Zotero.\" \"build/The Brain.js\""
   },
   "directories": {
     "test": "test"
