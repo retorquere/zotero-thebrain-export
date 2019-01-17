@@ -1,9 +1,9 @@
 const fs = require('fs')
-
+const tsconfig = require('./tsconfig.json')
 
 const translator = {
   source: 'The Brain.ts',
-  target: 'docs/The Brain.js',
+  target: `${tsconfig.compilerOptions.outDir}/The Brain.js`,
 }
 translator.mtime = fs.statSync(translator.source).mtime
 translator.data = fs.readFileSync(translator.target, 'utf-8')

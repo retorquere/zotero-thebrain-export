@@ -1,4 +1,4 @@
-*.d.ts
+build
 *.txt
 node_modules
 *.xlsx
