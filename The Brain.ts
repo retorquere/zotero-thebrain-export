@@ -123,7 +123,7 @@ function doExport() {
     Zotero.write(clean(title) + '\n')
 
     const [ , ug, libraryID, key ] = item.uri.match(/http:\/\/zotero\.org\/(users|groups)\/([^\/]+)\/items\/(.+)/)
-    detail(`zotero://select/items/${ug === 'users' && libraryID === 'local' ? '0' : libraryID}_${key}`, '+')
+    detail(`zotero://select/item/${ug === 'users' && libraryID === 'local' ? '0' : libraryID}_${key}`, '+')
 
     detail(item.url, '+')
     for (const att of (item.attachments || [])) {
