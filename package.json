@@ -12,7 +12,7 @@
     "start": "tsc --outDir docs && node build.js",
     "zot": "npm start && cp 'docs/The Brain.js' ~/.BBTZ5TEST/zotero/translators/",
     "postversion": "git push --tags && npm run make-release && npm run release-asset",
-    "make-release": "github-release release --user retorquere --repo $npm_package_name --tag \"v$npm_package_version\" --name \"$npm_package_name $npm_package_version\"",
+    "make-release": "github-release release --user retorquere --repo $npm_package_name --tag \"v$npm_package_version\" --name \"$npm_package_description $npm_package_version\"",
     "release-asset": "github-release upload --user retorquere --repo $npm_package_name --tag \"v$npm_package_version\" --name \"The Brain.js\" --file \"docs/The Brain.js\""
   },
   "directories": {
