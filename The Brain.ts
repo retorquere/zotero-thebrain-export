@@ -120,7 +120,7 @@ function doExport() {
 
     let title = item.title
     if (reference.length) title += `, (${reference.join(', ')})`
-    Zotero.write(clean(title) + '\n')
+    Zotero.write((year ? `.${year} ` : '') + clean(title) + '\n') // tslint:disable-line:prefer-template
 
     const [ , ug, libraryID, key ] = item.uri.match(/http:\/\/zotero\.org\/(users(?:\/local)?|groups)\/([^\/]+)\/items\/(.+)/)
     detail(`zotero://select/items/${ug === 'users/local' ? '0' : libraryID}_${key}`, '+')
