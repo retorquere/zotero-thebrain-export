@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@types/node": "^10.12.18",
-    "github-release-cli": "^0.4.1",
+    "github-release-cli": "^1.0.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.12.1",
     "typescript": "^3.2.2"
